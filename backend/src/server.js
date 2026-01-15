@@ -20,19 +20,19 @@ app.use(express.json()); // Essential for parsing JSON data from the frontend
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// make ready for deployment
-if(process.env.NODE_ENV === "production") {
+// // make ready for deployment
+// if(process.env.NODE_ENV === "production") {
    
 
-    const frontendPath = path.resolve(__dirname, "../../frontend/dist");
-    app.use(express.static(frontendPath));
+//     const frontendPath = path.resolve(__dirname, "../../frontend/dist");
+//     app.use(express.static(frontendPath));
 
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(frontendPath,"index.html"));
-    });
+//     app.get("*", (req, res) => {
+//         res.sendFile(path.join(frontendPath,"index.html"));
+//     });
 
-    console.log("Checking path:", frontendPath);
-}
+//     console.log("Checking path:", frontendPath);
+// }
 
 
 
