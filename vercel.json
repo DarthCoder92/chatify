@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "functions": {
+    "backend/src/server.js": {
+      "runtime": "vercel-node@latest"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -7,7 +12,7 @@
     },
     {
       "source": "/((?!api).*)",
-      "destination": "/frontend/dist/index.html"    
+      "destination": "/frontend/dist/index.html"
     }
   ]
 }
