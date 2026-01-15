@@ -6,7 +6,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && npm run build --workspace=frontend",
+    "build": "npm run build --workspace=frontend",
     "start": "npm run start --workspace=backend"
   },
   "repository": {
