@@ -25,4 +25,10 @@ if(process.env.NODE_ENV === "production") {
     })
 }
 
-app.listen(PORT, () => { console.log("Server running on port " + PORT )});
+// IMPORTANT: Export for Vercel
+export default app; 
+
+// Note: app.listen is ignored by Vercel's serverless runtime
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
