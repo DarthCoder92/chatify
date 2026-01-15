@@ -3,13 +3,14 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import path from "path";
+import { fileURLToPath } from "url";    
 
 dotenv.config();
 
 const app = express();
 
-
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,7 +24,7 @@ app.use("/api/messages", messageRoutes);
 if(process.env.NODE_ENV === "production") {
    
 
-    const frontendPath = path.join(process.cwd(), "frontend", "dist");
+    const frontendPath = path.resolve(__dirname, "../../frontend/dist");
     app.use(express.static(frontendPath));
 
     app.get("*", (req, res) => {
