@@ -8,9 +8,12 @@ dotenv.config();
 
 const app = express();
 
+
 const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 3000;
+
+app.use(express.json()); // Essential for parsing JSON data from the frontend
 
 
 app.use("/api/auth", authRoutes);
@@ -18,6 +21,7 @@ app.use("/api/messages", messageRoutes);
 
 // make ready for deployment
 if(process.env.NODE_ENV === "production") {
+   
 
     const frontendPath = path.join(process.cwd(), "frontend", "dist");
     app.use(express.static(frontendPath));
@@ -25,6 +29,8 @@ if(process.env.NODE_ENV === "production") {
     app.get("*", (req, res) => {
         res.sendFile(path.join(frontendPath,"index.html"));
     });
+
+    console.log("Checking path:", frontendPath);
 }
 
 // IMPORTANT: Export for Vercel
