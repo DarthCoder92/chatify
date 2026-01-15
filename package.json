@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "workspaces":["frontend", "backend"],
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install-all": "npm install",
     "build": "npm run build --workspace=frontend",
     "start": "npm run start --workspace=backend"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   },
   "repository": {
     "type": "git",
@@ -16,7 +21,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/DarthCoder92/chatify/issues"
   },
