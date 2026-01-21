@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import path from "path";
-import { fileURLToPath } from "url";    
+import { fileURLToPath } from "url";
+import { connectDB } from "./lib/db.js";    
 
 dotenv.config();
 
@@ -20,26 +21,25 @@ app.use(express.json()); // Essential for parsing JSON data from the frontend
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// // make ready for deployment
-// if(process.env.NODE_ENV === "production") {
-   
+// 1. Define the path to your frontend build folder
+const frontendPath = path.resolve(__dirname, "../../frontend/dist");
 
-//     const frontendPath = path.resolve(__dirname, "../../frontend/dist");
-//     app.use(express.static(frontendPath));
+// 2. Serve static files
+app.use(express.static(frontendPath));
 
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.join(frontendPath,"index.html"));
-//     });
-
-//     console.log("Checking path:", frontendPath);
-// }
-
+// 3. Handle SPA routing: send index.html for any non-api routes
+app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+});
 
 
 
 // Note: app.listen is ignored by Vercel's serverless runtime
 if (process.env.NODE_ENV !== "production") {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+        connectDB();
+    });
 }
 
 export default app;
