@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/DarthCoder92/chatify/issues"
   },
-  "homepage": "https://github.com/DarthCoder92/chatify#readme"
+  "homepage": "https://github.com/DarthCoder92/chatify#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6"
+  }
 }
