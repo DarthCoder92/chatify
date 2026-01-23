@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv from "dotenv";
+import {ENV} from "./lib/env.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import path from "path";
@@ -13,7 +13,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.PORT || 3000;
+const PORT = ENV.PORT || 3000;
 
 app.use(express.json()); // Essential for parsing JSON data from the frontend
 
@@ -35,7 +35,7 @@ app.get(/^\/(?!api).*/, (req, res) => {
 
 
 // Note: app.listen is ignored by Vercel's serverless runtime
-if (process.env.NODE_ENV !== "production") {
+if (ENV.NODE_ENV !== "production") {
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`)
         connectDB();
