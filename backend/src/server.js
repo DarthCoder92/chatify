@@ -43,4 +43,6 @@ if (ENV.NODE_ENV !== "production") {
     });
 }
 
+connectDB();
+
 export default app;
