@@ -6,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { connectDB } from "./lib/db.js";    
 import "dotenv/config";
+import cookieParser from "cookie-parser";
 
 // testing change
 
@@ -17,6 +18,7 @@ const __dirname = path.dirname(__filename);
 const PORT = ENV.PORT || 3000;
 
 app.use(express.json()); // Essential for parsing JSON data from the frontend
+app.use(cookieParser());
 
 
 app.use("/api/auth", authRoutes);
