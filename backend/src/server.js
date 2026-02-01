@@ -41,7 +41,7 @@ app.get(/^\/(?!api).*/, (req, res) => {
 if (ENV.NODE_ENV !== "production") {
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`)
-        connectDB();
+        
     });
 }
 
