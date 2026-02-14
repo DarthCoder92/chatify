@@ -15,7 +15,8 @@
   "scripts": {
     "install-all": "npm install",
     "build": "npm run build --workspace=frontend",
-    "start": "npm run start --workspace=backend"
+    "start": "npm run start --workspace=backend",
+    "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -38,6 +39,7 @@
   },
   "homepage": "https://github.com/DarthCoder92/chatify#readme",
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6"
+    "@types/bcryptjs": "^2.4.6",
+    "concurrently": "^9.2.1"
   }
 }
