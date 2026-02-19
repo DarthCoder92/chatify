@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { connectDB } from "./lib/db.js";    
 import "dotenv/config";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 // testing change
 
@@ -18,6 +19,9 @@ const __dirname = path.dirname(__filename);
 const PORT = ENV.PORT || 3000;
 
 app.use(express.json()); // Essential for parsing JSON data from the frontend
+
+app.use(cors({ origin: (ENV.NODE_ENV === "development") ? "http://localhost:5173" : ENV.CLIENT_URL, credentials: true}));
+
 app.use(cookieParser());
 
 
