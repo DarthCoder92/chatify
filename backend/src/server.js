@@ -18,7 +18,8 @@ const __dirname = path.dirname(__filename);
 
 const PORT = ENV.PORT || 3000;
 
-app.use(express.json()); // Essential for parsing JSON data from the frontend
+app.use(express.json({limit: "5mb"})); // Essential for parsing JSON data from the frontend
+app.use(express.urlencoded({limit: "5mb", extended: true}));
 
 app.use(cors({ origin: (ENV.NODE_ENV === "development") ? "http://localhost:5173" : ENV.CLIENT_URL, credentials: true}));
 
