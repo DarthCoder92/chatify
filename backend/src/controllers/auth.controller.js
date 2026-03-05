@@ -122,6 +122,7 @@ export const updateProfile = async (req, res) => {
 
         
     } catch (error) {
-        
+        console.error("Error in updateProfile controller:", error); // NEVER leave this empty
+        res.status(500).json({ message: "Internal server error" });
     }
 };
