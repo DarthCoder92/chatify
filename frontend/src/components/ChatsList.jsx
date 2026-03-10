@@ -5,6 +5,7 @@ import NoChatsFound from './NoChatsFound';
 
 function ChatsList() {
   const {getMyChatPartners, chats, isUsersLoading, setSelectedUser} = useChatStore();
+  const onlineUsers = []; // Remove this once you implement real socket
 
   useEffect(() => {getMyChatPartners();}, [getMyChatPartners]);
 
