@@ -8,10 +8,11 @@ import { connectDB } from "./lib/db.js";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./lib/socket.js";
 
 // testing change
 
-const app = express();
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,7 +45,7 @@ app.get(/^\/(?!api).*/, (req, res) => {
 
 // Note: app.listen is ignored by Vercel's serverless runtime
 if (ENV.NODE_ENV !== "production") {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`)
         
     });
