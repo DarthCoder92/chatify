@@ -43,13 +43,9 @@ app.get(/^\/(?!api).*/, (req, res) => {
 
 
 
-// Note: app.listen is ignored by Vercel's serverless runtime
-if (ENV.NODE_ENV !== "production") {
-    server.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`)
-        
-    });
-}
+server.listen(PORT, () => {
+    console.log(`Server running on port: ${PORT}`);
+});
 
 connectDB();
 
